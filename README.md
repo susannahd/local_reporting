@@ -38,12 +38,12 @@ Over the course of joining data together, I found instances where a zip code had
 ## Dashboard Functionality
 The sliders in the dashboard are as followused to weight variables in guiding a decision on where to center data investigations and/or place on-the-ground reporters. Sliding to the left means the variable is less important to that decision; sliding to the right means you feel the data is more important. The sliders are as follows:
 
-**2020 Gun Violence** (perhaps misleading, since as mentioned above, it's gun violence incidents from 11-28-2019 to 11-27-2020, but it'll be close)
-**Police Violence** (number of killings by police, per city)
-**Local News Outlets Per Capita** (number of local news outlets in a city/city population, to help evaluate the need for better gun violence reporting)
-**INN Members** (number of INN Members per city, to evaluate potential non-profit partnership opportunities)
-**Black and/or Latino Media Presence** (number of Black Media Groups + number of Latino Media Groups + number of NABJ chapters, to evaluate potential partnership opportunities with Black and/or Latino journalists)
-**Black Community** (Black population/city population, according to ACS projections, because gun violence is an issue that disproportionately impacts Black and Latino people and our work should represent and serve them.)
+- **2020 Gun Violence** (perhaps misleading, since as mentioned above, it's gun violence incidents from 11-28-2019 to 11-27-2020, but it'll be close)
+- **Police Violence** (number of killings by police, per city)
+- **Local News Outlets Per Capita** (number of local news outlets in a city/city population, to help evaluate the need for better gun violence reporting)
+- **INN Members** (number of INN Members per city, to evaluate potential non-profit partnership opportunities)
+- **Black and/or Latino Media Presence** (number of Black Media Groups + number of Latino Media Groups + number of NABJ chapters, to evaluate potential partnership opportunities with Black and/or Latino journalists)
+- **Black Community** (Black population/city population, according to ACS projections, because gun violence is an issue that disproportionately impacts Black and Latino people and our work should represent and serve them.)
 
 The sliders operate to weight a city's final ranking. The input dataset has already assigned a rank to each city based on each variable in question. The slider setting determines the weighting. The final ranking of cities is equal to:
 
