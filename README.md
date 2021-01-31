@@ -31,15 +31,16 @@ In its current form, this data is updated manually. I link to each data source b
 
 [Gun Violence Archive](https://www.gunviolencearchive.org/query): The Gun Violence archive documents gun violence incidents across the United States, creates reports, and helpfully lets you download data, but not more than 2,000 records, and it won't tell you on its website that that's the limit. >:( I tried to scrape this data, and it still didn't let me access more than 2,000 records. Anyway, I manually scraped this data to get all the gun violence incidents from 11-28-2019 to 11-27-2020, because that was the date I happened to pull the data.
 
-[Mapping Police Violence](https://mappingpoliceviolence.org/aboutthedata): Mapping Police Violence is a research collaborative that documents incidents of police killings nationwide. While it is extremely difficult to assess the full scale of police violence, this offers a proxy. Their data, pulled mainly from three other databases is surprisingly robust, including data on zipcode, victim gender/age/race/name/cause of death, and then several metrics that I believe are reported by the police, including whether the victim displayed signs of mental illness, was armed/unarmed, threat level, fleeing/not fleeing, encounter type, and initial reported reason for violence. A lot could be done with this data, but for the sake of this dashboard, I simplified it to just number of police killings by zipcode/city/state. 
+[Mapping Police Violence](https://mappingpoliceviolence.org/aboutthedata): Mapping Police Violence is a research collaborative that documents incidents of police killings nationwide from 2013 - present. While it is extremely difficult to assess the full scale of police violence, this offers a proxy. Their data, pulled mainly from three other databases is surprisingly robust, including data on zipcode, victim gender/age/race/name/cause of death, and then several metrics that I believe are reported by the police, including whether the victim displayed signs of mental illness, was armed/unarmed, threat level, fleeing/not fleeing, encounter type, and initial reported reason for violence. A lot could be done with this data, but for the sake of this dashboard, I simplified it to just number of police killings by zipcode/city/state. 
 
 Over the course of joining data together, I found instances where a zip code had been entered incorrectly into one of the data sources, or a city had been misspelled, or a state abbreviation was incorrect. In these events, I manually corrected them. In retrospect, it would have been [cool](https://www.healthline.com/health/am-i-a-bad-person) of me to notify the organizations in charge of these data sources to help them update their data so that other people could avoid that work, but I got too excited about moving on to the next step of the project. 
 
 ## Dashboard Functionality
+#### Sliders
 The sliders in the dashboard are as followused to weight variables in guiding a decision on where to center data investigations and/or place on-the-ground reporters. Sliding to the left means the variable is less important to that decision; sliding to the right means you feel the data is more important. The sliders are as follows:
 
 - **2020 Gun Violence** (perhaps misleading, since as mentioned above, it's gun violence incidents from 11-28-2019 to 11-27-2020, but it'll be close)
-- **Police Violence** (number of killings by police, per city)
+- **Police Violence** (number of killings by police from 2013-2020, per city)
 - **Local News Outlets Per Capita** (number of local news outlets in a city/city population, to help evaluate the need for better gun violence reporting)
 - **INN Members** (number of INN Members per city, to evaluate potential non-profit partnership opportunities)
 - **Black and/or Latino Media Presence** (number of Black Media Groups + number of Latino Media Groups + number of NABJ chapters, to evaluate potential partnership opportunities with Black and/or Latino journalists)
@@ -50,6 +51,9 @@ The sliders operate to weight a city's final ranking. The input dataset has alre
 (2020 Gun Violence Rank x Gun Violence Slider Weight) + (Police Violence Rank x Police Violence Slider Weight) + (Local News Outlets Per Capita Rank) x Local News Slider Weight) + (INN Members Rank x INN Members Slider Weight) + (Black and/or Latino Media Presence Rank x Black and/or Latino Media Presence Rank) + (Black Community Rank x Black Community Weight)
 
 Therefore, pulling the slider all the way to 0 indicates "This variable is not important at all to prioritizing a city for on-the-ground reporting" and excludes it entirely.
+
+#### Divisions
+Divisions represent different regions of the United States. This was an update made on 1-29-2021 with the understanding that we want greater geographic representation. That's to say, perhaps both Detroit and Minneapolis rank highly, but since they're both in the East North Central division*, it may be better for our impact to select one, and then find another high ranking city in a different division, e.g. Atlanta, which is in the South Atlantic. All divisions are selected by default, meaning that they are all included in the total ranking. Unselecting a division excludes it from the ranking process. 
 
 ## Feedback
 If you have any questions or feedback, please contact me. 
