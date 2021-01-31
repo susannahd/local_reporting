@@ -1,6 +1,7 @@
 # local_reporting
 Code and files related to the Local Reporting Dashboard
 
+#About
 This tool was developed to help prioritize cities for a local reporting initiative. It incorporates 2020 data from the U.S. Census Bureau (for ZCTA level demographic projections), UNC's Expanding Media Desert project, the Center for Community Media's Black Media Initiative, CUNY's Latino News Media Map, the Institute for Nonprofit News' Member Directory, the National Association of Black Journalists' Chapters page, the Gun Violence Archive, and Mapping Police Violence. 
 
 This dashboard **does**: 
@@ -13,6 +14,7 @@ This dashboard **doesn't**:
 - Account for funding opportunities, ability to recruit talent, or qualitative data on the quality of crime coverage in a given region
 - Update :(
 
+#Data Sources
 In its current form, this data is updated manually. I link to each data source below and outline potential opportunities to automate data pulls, where applicable below:
 
 [U.S. Census Bureau ZCTA level demographic projections](https://data.census.gov/cedsci/table?t=Race%20and%20Ethnicity&g=0100000US.860000&tid=ACSDT5Y2019.B02001&hidePreview=true): There are [APIs](https://api.census.gov/data/key_signup.html) available for pulling this data. I haven't looked into how frequently projections are updated, but my gut tells me that it's <= once a year.
@@ -33,6 +35,7 @@ In its current form, this data is updated manually. I link to each data source b
 
 Over the course of joining data together, I found instances where a zip code had been entered incorrectly into one of the data sources, or a city had been misspelled, or a state abbreviation was incorrect. In these events, I manually corrected them. In retrospect, it would have been [cool](https://www.healthline.com/health/am-i-a-bad-person) of me to notify the organizations in charge of these data sources to help them update their data so that other people could avoid that work, but I got too excited about moving on to the next step of the project. 
 
+#Dashboard Functionality
 The sliders in the dashboard are as followused to weight variables in guiding a decision on where to center data investigations and/or place on-the-ground reporters. Sliding to the left means the variable is less important to that decision; sliding to the right means you feel the data is more important. The sliders are as follows:
 
 **2020 Gun Violence** (perhaps misleading, since as mentioned above, it's gun violence incidents from 11-28-2019 to 11-27-2020, but it'll be close)
@@ -48,7 +51,8 @@ The sliders operate to weight a city's final ranking. The input dataset has alre
 
 Therefore, pulling the slider all the way to 0 indicates "This variable is not important at all to prioritizing a city for on-the-ground reporting" and excludes it entirely.
 
-If you have any questions, please contact me. 
+#Feedback
+If you have any questions or feedback, please contact me. 
 
 
 
