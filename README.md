@@ -55,6 +55,9 @@ Therefore, pulling the slider all the way to 0 indicates "This variable is not i
 #### Divisions
 Divisions represent different regions of the United States. This was an update made on 1-29-2021 with the understanding that we want greater geographic representation. That's to say, perhaps both Detroit and Minneapolis rank highly, but since they're both in the East North Central division*, it may be better for our impact to select one, and then find another high ranking city in a different division, e.g. Atlanta, which is in the South Atlantic. All divisions are selected by default, meaning that they are all included in the total ranking. Unselecting a division excludes it from the ranking process. 
 
+#### Update Dashboard
+You must click 'Update Dashboard' before the dashboard will render a map and a table.
+
 ## Feedback
 If you have any questions or feedback, please contact me. 
 
