@@ -1,15 +1,15 @@
 ##################################################
 ## Code: local_news_dash.R
 ## Project: The Trace
-## Description: Build shiny app to display map with points
+## Description: Build shiny app to prioritize cities for networked investigations and on-the-ground reporting
 ## Date: December 13, 2020
+## Last Updated: January 31, 2021
 ## Author: Susannah Derr
 ##################################################
 rm(list=ls())
 
 library(shiny)
 library(shinydashboard)
-library(data.table)
 library(tidyverse)
 library(dplyr)
 library(scales)
@@ -19,8 +19,8 @@ library(readr)
 library(leaflet.minicharts)
 
 
-for_ranking<-read_csv("https://raw.githubusercontent.com/susannahd/local_reporting/main/Local%20News%20Landscape%20Condensed%202021-01-29.csv?token=AIAFIUYPLQFA3IOQ5XOS5E3AC43CK")
-for_mapping<-read_csv("https://raw.githubusercontent.com/susannahd/local_reporting/main/Local%20News%20Landscape%20Mapping%20File%202021-01-29.csv?token=AIAFIU5G3QSMURF64LED5C3AC43H4")
+for_ranking<-read_csv("https://raw.githubusercontent.com/susannahd/local_reporting/main/Local%20News%20Landscape%20Condensed%202021-02-01.csv")
+for_mapping<-read_csv("https://raw.githubusercontent.com/susannahd/local_reporting/main/Local%20News%20Landscape%20Mapping%20File%202021-02-01.csv")
 
 ui<-dashboardPage(skin = "black"
                   ,dashboardHeader(title = "Local Reporting Initiative Prioritization")
@@ -48,7 +48,7 @@ ui<-dashboardPage(skin = "black"
                                        column(12, h1("How To Guide: Local Reporting Initiative Prioritization"))
                                        ,column(12,h4("This tool was developed to help prioritize cities for The Trace's local reporting initiative. It incorporates data from the U.S. Census Bureau (for ZCTA level demographic projections), UNC's Expanding Media Desert project, the Center for Community Media's Black Media Initiative, CUNY's Latino News Media Map, the Institute for Nonprofit News' Member Directory, the National Association of Black Journalists' Chapters page, the Gun Violence Archive, and Mapping Police Violence."))
                                       ,column(12,h4("All of the data was consolidated into a single dataset to help understand The Trace's potential for impact in a given city, based on gun violence incidents and the presence of local and diverse media outlets."))
-                                       ,column(12,h4("By using the sliders on the home page, users can indicate how important a variable is in determining the location for future on-the-ground reporting: sliding to the right indicates greater importance; to the left, lesser importance. The number on the slider represents the weight assigned to that variable in determining its overall rank. The Map View will display a map showing the top ranked 50 cities based on the user settings. The Rank View will display a list of those same top 50 cities, along with their associated data. "))
+                                       ,column(12,h4("By using the sliders on the home page, users can indicate how important a variable is in determining the location for future on-the-ground reporting: sliding to the right indicates greater importance; to the left, lesser importance. The number on the slider represents the weight assigned to that variable in determining its overall rank. The Map View will display a map showing the top ranked 100 cities based on the user settings. The Rank View will display a list of those same top 100 cities along with their associated data."))
                                 ))#End fluidRow
                       )#End tabItem about
 ##TAB ITEM MAP                      
@@ -77,13 +77,14 @@ server <- function(input, output) {
   ##RANKED CITIES
   ranked_cities<-eventReactive(input$update, {
       ranked_data<-for_ranking %>%
+        filter(total_population >=500) %>%
       mutate(weighted_gva=gva_rank*input$gva
               ,weighted_local_news =newspapers_per_capita_rank*input$local_news
               ,weighted_inn =inn_rank*input$inn
               ,weighted_blm =blm_rank*input$black_media
               ,weighted_black_community =black_community_rank*input$black
               ,weighted_police_violence =pva_rank*input$police_violence
-              ,total=(weighted_gva+weighted_local_news+weighted_inn+weighted_blm+weighted_black_community+weighted_police_violence)/6
+              ,total=weighted_gva+weighted_local_news+weighted_inn+weighted_blm+weighted_black_community+weighted_police_violence
               ,total_rank=dense_rank(total)) %>%
         group_by(division) %>%
         mutate(rank_in_division=dense_rank(total)) %>%
@@ -94,7 +95,7 @@ server <- function(input, output) {
   map_data<-reactive({
     map_data<-ranked_cities() %>%
       left_join(for_mapping,by=c('state_abbr','division','city')) %>%
-      filter(total_rank<=50) %>%
+      filter(total_rank<=100) %>%
       group_by(state_abbr,division,city) %>%
       slice(which.min(as.numeric(zip)))
   })
@@ -123,7 +124,7 @@ server <- function(input, output) {
       select(Division
              ,State,City,Population,Newspapers
              ,`Black or Latino Media Groups`,`2020 Gun Violence Incidents`,`2013-2020 Murders by Police`,
-             `Percent Black Population`,`Rank in Division`,`Total Rank`,`INN Members`) %>%
+             `Percent Black Population`,`Rank in Division`,`INN Members`,`Total Rank`) %>%
        filter(`Total Rank`<=100) %>%
        mutate(`Percent Black Population`=round(`Percent Black Population`,3)) %>%
        arrange(`Total Rank`)
