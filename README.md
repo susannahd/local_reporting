@@ -12,6 +12,7 @@ This dashboard **does**:
 
 This dashboard **doesn't**:
 - Account for funding opportunities, ability to recruit talent, or qualitative data on the quality of crime coverage in a given region
+- Account for Latino community since Latino is an ethnicity, not a race according to the U.S. Census. This is currently preventing California, Texas Florida from coming up in the rankings more often, since those states tend to have lower Black populations but larger Latino populations. 
 - Update :(
 
 ## Data Sources
