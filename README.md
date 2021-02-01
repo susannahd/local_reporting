@@ -2,23 +2,23 @@
 Code and files related to the Local Reporting Dashboard
 
 ## About
-This tool was developed to help prioritize cities for a local reporting initiative. It incorporates 2020 data from the U.S. Census Bureau (for ZCTA level demographic projections), UNC's Expanding Media Desert project, the Center for Community Media's Black Media Initiative, CUNY's Latino News Media Map, the Institute for Nonprofit News' Member Directory, the National Association of Black Journalists' Chapters page, the Gun Violence Archive, and Mapping Police Violence. 
+This tool was developed to help prioritize cities for a local reporting initiative. It incorporates 2020 data from the U.S. Census Bureau (for ZCTA level demographic projections, and 2019 county level estimates for Hispanic/Latino populations), UNC's Expanding Media Desert project, the Center for Community Media's Black Media Initiative, CUNY's Latino News Media Map, the Institute for Nonprofit News' Member Directory, the National Association of Black Journalists' Chapters page, the Gun Violence Archive, and Mapping Police Violence. 
 
 This dashboard **does**: 
 - Allow users to decide what variables are important to launching a data investigation
-- Output a map (darker circles indicate higher ranking) with the top 50 ranked cities based on user input
-- Output a table with the same top 50 ranked cities, their state, and their division, along with relevant data on gun violence, police violence, local newspapers, local nonprofit partners, Black/Latino media groups, Black population, the city's rank within its division, and the city's rank overall.
+- Output a map (darker circles indicate higher ranking) with the top 100 ranked counties based on user input
+- Output a table with the same top 100 ranked counties, their state, and their division, along with relevant data on gun violence, police violence, local newspapers, local nonprofit partners, Black/Latino media groups, Black population, the county's rank within its division, and the city's rank overall.
 - Allow users to download a csv of the data within the table to help guide decisions on local investigations and on-the-ground reporting
 
 This dashboard **doesn't**:
 - Account for funding opportunities, ability to recruit talent, or qualitative data on the quality of crime coverage in a given region
-- Account for Latino community since Latino is an ethnicity, not a race according to the U.S. Census. This is currently preventing California, Texas Florida from coming up in the rankings more often, since those states tend to have lower Black populations but larger Latino populations. 
+- Account for the Latino community at the city level due to insufficient data.
 - Update :(
 
 ## Data Sources
 In its current form, this data is updated manually. I link to each data source below and outline potential opportunities to automate data pulls, where applicable below:
 
-[U.S. Census Bureau ZCTA level demographic projections](https://data.census.gov/cedsci/table?t=Race%20and%20Ethnicity&g=0100000US.860000&tid=ACSDT5Y2019.B02001&hidePreview=true): There are [APIs](https://api.census.gov/data/key_signup.html) available for pulling this data. I haven't looked into how frequently projections are updated, but my gut tells me that it's <= once a year.
+[U.S. Census Bureau ZCTA level demographic projections](https://data.census.gov/cedsci/table?t=Race%20and%20Ethnicity&g=0100000US.860000&tid=ACSDT5Y2019.B02001&hidePreview=true): There are [APIs](https://api.census.gov/data/key_signup.html) available for pulling this data. I haven't looked into how frequently projections are updated, but my gut tells me that it's <= once a year. I also obtained county level data on Hispanic/Latino populations here.
 
 [UNC's Expanding Media Desert Project](https://www.usnewsdeserts.com/reports/news-deserts-and-ghost-newspapers-will-local-news-survive/): I had to personally request access to UNC's Media Desert data, and it's unclear how often this is refreshed. They emailed me a single XLSX file that includes newspapers in 2004, 2014, 2016, and 2020, along with newspaper closures from 2004-2019 (according to tab names). 
 
@@ -41,20 +41,21 @@ Over the course of joining data together, I found instances where a zip code had
 The sliders in the dashboard are as followused to weight variables in guiding a decision on where to center data investigations and/or place on-the-ground reporters. Sliding to the left means the variable is less important to that decision; sliding to the right means you feel the data is more important. The sliders are as follows:
 
 - **2020 Gun Violence** (perhaps misleading, since as mentioned above, it's gun violence incidents from 11-28-2019 to 11-27-2020, but it'll be close)
-- **Police Violence** (number of killings by police from 2013-2020, per city)
-- **Local News Outlets Per Capita** (number of local news outlets in a city/city population, to help evaluate the need for better gun violence reporting)
-- **INN Members** (number of INN Members per city, to evaluate potential non-profit partnership opportunities)
+- **Police Violence** (number of killings by police from 2013-2020, per designated geography)
+- **Local News Outlets Per Capita** (number of local news outlets in a designated geography/designated geography population, to help evaluate the need for better gun violence reporting)
+- **INN Members** (number of INN Members per designated geography, to evaluate potential non-profit partnership opportunities)
 - **Black and/or Latino Media Presence** (number of Black Media Groups + number of Latino Media Groups + number of NABJ chapters, to evaluate potential partnership opportunities with Black and/or Latino journalists)
-- **Black Community** (Black population/city population, according to ACS projections, because gun violence is an issue that disproportionately impacts Black and Latino people and our work should represent and serve them.)
+- **Black Community** (Black population/designated geography population, according to ACS projections, because gun violence is an issue that disproportionately impacts Black and Latino people and our work should represent and serve them.)
+- **Latino Community** (Latino population/county population, according to ACS projections. Hispanic/Latino data seems to only be available at the county level and higher, unfortunately)
 
 The sliders operate to weight a city's final ranking. The input dataset has already assigned a rank to each city based on each variable in question. The slider setting determines the weighting. The final ranking of cities is equal to:
 
-(2020 Gun Violence Rank x Gun Violence Slider Weight) + (Police Violence Rank x Police Violence Slider Weight) + (Local News Outlets Per Capita Rank) x Local News Slider Weight) + (INN Members Rank x INN Members Slider Weight) + (Black and/or Latino Media Presence Rank x Black and/or Latino Media Presence Rank) + (Black Community Rank x Black Community Weight)
+(2020 Gun Violence Rank x Gun Violence Slider Weight) + (Police Violence Rank x Police Violence Slider Weight) + (Local News Outlets Per Capita Rank) x Local News Slider Weight) + (INN Members Rank x INN Members Slider Weight) + (Black and/or Latino Media Presence Rank x Black and/or Latino Media Presence Rank) + (Black Community Rank x Black Community Weight) + (Latino Community Rank x Latino Community Weight)
 
 Therefore, pulling the slider all the way to 0 indicates "This variable is not important at all to prioritizing a city for on-the-ground reporting" and excludes it entirely.
 
 #### Divisions
-Divisions represent different regions of the United States. This was an update made on 1-29-2021 with the understanding that we want greater geographic representation. That's to say, perhaps both Detroit and Minneapolis rank highly, but since they're both in the East North Central division*, it may be better for our impact to select one, and then find another high ranking city in a different division, e.g. Atlanta, which is in the South Atlantic. All divisions are selected by default, meaning that they are all included in the total ranking. Unselecting a division excludes it from the ranking process. 
+Divisions represent different regions of the United States, as defined by the [U.S. Census](https://www.ncdc.noaa.gov/monitoring-references/maps/us-census-divisions.php). This was an update made on 1-29-2021 with the understanding that we want greater geographic representation. That's to say, perhaps both Detroit and Minneapolis rank highly, but since they're both in the East North Central division*, it may be better for our impact to select one, and then find another high ranking city in a different division, e.g. Atlanta, which is in the South Atlantic. All divisions are selected by default, meaning that they are all included in the total ranking. Unselecting a division excludes it from the ranking process. 
 
 #### Update Dashboard
 You must click 'Update Dashboard' before the dashboard will render a map and a table.
