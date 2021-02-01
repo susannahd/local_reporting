@@ -2,7 +2,7 @@
 Code and files related to the Local Reporting Dashboard
 
 ## About
-This tool was developed to help prioritize cities for a local reporting initiative. It incorporates 2020 data from the U.S. Census Bureau (for ZCTA level demographic projections, and 2019 county level estimates for Hispanic/Latino populations), UNC's Expanding Media Desert project, the Center for Community Media's Black Media Initiative, CUNY's Latino News Media Map, the Institute for Nonprofit News' Member Directory, the National Association of Black Journalists' Chapters page, the Gun Violence Archive, and Mapping Police Violence. 
+This tool was developed to help prioritize counties/cities for a local reporting initiative. It incorporates 2020 data from the U.S. Census Bureau (for ZCTA level demographic projections, and 2019 county level estimates for Hispanic/Latino populations), UNC's Expanding Media Desert project, the Center for Community Media's Black Media Initiative, CUNY's Latino News Media Map, the Institute for Nonprofit News' Member Directory, the National Association of Black Journalists' Chapters page, the Gun Violence Archive, and Mapping Police Violence. 
 
 This dashboard **does**: 
 - Allow users to decide what variables are important to launching a data investigation
