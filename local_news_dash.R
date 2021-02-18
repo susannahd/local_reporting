@@ -18,8 +18,8 @@ library(leaflet)
 library(readr)
 library(leaflet.minicharts)
 
-for_ranking<-read_csv("https://raw.githubusercontent.com/susannahd/local_reporting/main/Condensed%20Local%20News%20Landscape%202021-02-01.csv")
-for_mapping<-read_csv("https://raw.githubusercontent.com/susannahd/local_reporting/main/Local%20News%20Landscape%20Mapping%20File%202021-02-01.csv")
+for_ranking<-read_csv("https://raw.githubusercontent.com/susannahd/local_reporting/main/Condensed%20Local%20News%20Landscape%202021-02-18.csv")
+for_mapping<-read_csv("https://raw.githubusercontent.com/susannahd/local_reporting/main/Local%20News%20Landscape%20Mapping%20File%202021-02-18.csv")
 
 ui<-dashboardPage(skin = "black"
                   ,dashboardHeader(title = "Local Reporting Initiative Prioritization")
