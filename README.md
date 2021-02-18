@@ -7,7 +7,7 @@ This tool was developed to help prioritize counties/cities for a local reporting
 This dashboard **does**: 
 - Allow users to decide what variables are important to launching a data investigation
 - Output a map (darker circles indicate higher ranking) with the top 100 ranked counties based on user input
-- Output a table with the same top 100 ranked counties, their state, and their division, along with relevant data on gun violence, police violence, local newspapers, local nonprofit partners, Black/Latino media groups, Black population, the county's rank within its division, and the city's rank overall.
+- Output a table with the same top 100 ranked counties, their state, and their division, along with relevant data on gun violence, police violence, local newspapers, local nonprofit partners, Black/Latino media groups, Black population, the county's rank within its division, and the county's rank overall.
 - Allow users to download a csv of the data within the table to help guide decisions on local investigations and on-the-ground reporting
 
 This dashboard **doesn't**:
@@ -30,7 +30,7 @@ In its current form, this data is updated manually. I link to each data source b
 
 [National Association of Black Journalists' Chapters](https://www.nabj.org/page/RegionMap): I did some very basic web scraping here to get National Association of Black Journalist (NABJ) chapter names, city, and state by cycling through each region at the URL above. For the sake of this project, I'm counting both professional and student chapters, since there is a history of working with youth journalists. I can adapt this to exclude student chapters, since it's not like youth journalist partnerships are the default by any means.
 
-[Gun Violence Archive](https://www.gunviolencearchive.org/query): The Gun Violence archive documents gun violence incidents across the United States, creates reports, and helpfully lets you download data, but not more than 2,000 records, and it won't tell you on its website that that's the limit. >:( I tried to scrape this data, and it still didn't let me access more than 2,000 records. Anyway, I manually scraped this data to get all the gun violence incidents from 11-28-2019 to 11-27-2020, because that was the date I happened to pull the data.
+[Gun Violence Archive](https://www.gunviolencearchive.org/query): The Gun Violence archive documents gun violence incidents across the United States, creates reports, and helpfully lets you download data, but not more than 2,000 records, and it won't tell you on its website that that's the limit. >:( I tried to scrape this data, and it still didn't let me access more than 2,000 records. Anyway, I manually compiled this data to get all the gun violence incidents from 1-1-2020 to 12-31-2020.
 
 [Mapping Police Violence](https://mappingpoliceviolence.org/aboutthedata): Mapping Police Violence is a research collaborative that documents incidents of police killings nationwide from 2013 - present. While it is extremely difficult to assess the full scale of police violence, this offers a proxy. Their data, pulled mainly from three other databases is surprisingly robust, including data on zipcode, victim gender/age/race/name/cause of death, and then several metrics that I believe are reported by the police, including whether the victim displayed signs of mental illness, was armed/unarmed, threat level, fleeing/not fleeing, encounter type, and initial reported reason for violence. A lot could be done with this data, but for the sake of this dashboard, I simplified it to just number of police killings by zipcode/city/state. 
 
@@ -40,7 +40,7 @@ Over the course of joining data together, I found instances where a zip code had
 #### Sliders
 The sliders in the dashboard are as followused to weight variables in guiding a decision on where to center data investigations and/or place on-the-ground reporters. Sliding to the left means the variable is less important to that decision; sliding to the right means you feel the data is more important. The sliders are as follows:
 
-- **2020 Gun Violence** (perhaps misleading, since as mentioned above, it's gun violence incidents from 11-28-2019 to 11-27-2020, but it'll be close)
+- **2020 Gun Violence** (number of people killed or injured by guns in 2020. If the same person was shot twice in 2020 on separate days, that would count as two incidents)
 - **Police Violence** (number of killings by police from 2013-2020, per designated geography)
 - **Local News Outlets Per Capita** (number of local news outlets in a designated geography/designated geography population, to help evaluate the need for better gun violence reporting)
 - **INN Members** (number of INN Members per designated geography, to evaluate potential non-profit partnership opportunities)
