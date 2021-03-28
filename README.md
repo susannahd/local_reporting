@@ -39,7 +39,7 @@ Over the course of joining data together, I found instances where a zip code had
 
 ## Dashboard Functionality
 #### Sliders
-The sliders in the dashboard are as followused to weight variables in guiding a decision on where to center data investigations and/or place on-the-ground reporters. Sliding to the left means the variable is less important to that decision; sliding to the right means you feel the data is more important. The sliders are as follows:
+The sliders in the dashboard are used to weight variables to guide a decision on where to center data investigations and/or place on-the-ground reporters. Sliding to the left means the variable is less important to that decision; sliding to the right means you feel the data is more important. The sliders are as follows:
 
 - **2020 Gun Violence** (number of people killed or injured by guns in 2020. If the same person was shot twice in 2020 on separate days, that would count as two incidents)
 - **Police Violence** (number of killings by police from 2013-2020, per designated geography)
@@ -56,7 +56,7 @@ The sliders operate to weight a city's final ranking. The input dataset has alre
 Therefore, pulling the slider all the way to 0 indicates "This variable is not important at all to prioritizing a city for on-the-ground reporting" and excludes it entirely.
 
 #### Divisions
-Divisions represent different regions of the United States, as defined by the [U.S. Census](https://www.ncdc.noaa.gov/monitoring-references/maps/us-census-divisions.php). This was an update made on 1-29-2021 with the understanding that we want greater geographic representation. That's to say, perhaps both Detroit and Minneapolis rank highly, but since they're both in the East North Central division, it may be better for our impact to select one, and then find another high ranking city in a different division, e.g. Atlanta, which is in the South Atlantic. All divisions are selected by default, meaning that they are all included in the total ranking. Unselecting a division excludes it from the ranking process. 
+Divisions represent different regions of the United States, as defined by the [U.S. Census](https://www.ncdc.noaa.gov/monitoring-references/maps/us-census-divisions.php). This was an update made on 1-29-2021 with the understanding that we want greater geographic representation across the local reporting network. That's to say, perhaps both Detroit and Minneapolis rank highly, but since they're both in the East North Central division, it may be better for our impact to select one, and then find another high ranking city in a different division, e.g. Atlanta, which is in the South Atlantic. All divisions are selected by default, meaning that they are all included in the total ranking. Unselecting a division excludes it from the ranking process. 
 
 #### Update Dashboard
 You must click 'Update Dashboard' before the dashboard will render a map and a table.
