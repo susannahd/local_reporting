@@ -13,7 +13,7 @@ This dashboard **does**:
 This dashboard **doesn't**:
 - Account for funding opportunities, ability to recruit talent, or qualitative data on the quality of crime coverage in a given region
 - Account for the Latino community at the city level due to insufficient data.
-- Update :(
+- Update automatically as new data becomes available :(
 
 ## Data Sources
 In its current form, this data is updated manually. I link to each data source below and outline potential opportunities to automate data pulls, where applicable below:
