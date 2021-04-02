@@ -34,7 +34,7 @@ In its current form, this data is updated manually. I link to each data source b
 
 [Mapping Police Violence](https://mappingpoliceviolence.org/aboutthedata): Mapping Police Violence is a research collaborative that documents incidents of police killings nationwide from 2013 - present. While it is extremely difficult to assess the full scale of police violence, this offers a proxy. Their data, pulled mainly from three other databases, is surprisingly robust and includes data on zipcode, victim gender/age/race/name/cause of death, along with several metrics that I believe are reported by the police, including whether the victim displayed signs of mental illness, was armed/unarmed, threat level, fleeing/not fleeing, encounter type, and initial reported reason for violence. A lot could be done with this data, but for the sake of this dashboard, I simplified it to just number of police-caused deaths by zipcode/city/state. 
 
-[Overall Notes]
+**Overall Notes**
 Over the course of joining data together, I found instances where a zip code had been entered incorrectly into one of the data sources, or a city had been misspelled, or a state abbreviation was incorrect. In these events, I manually corrected them. In retrospect, it would have been [cool](https://www.healthline.com/health/am-i-a-bad-person) of me to notify the organizations in charge of these data sources to help them update their data so that other people could avoid that work, but I got too excited about moving on to the next step of the project. 
 
 ## Dashboard Functionality
